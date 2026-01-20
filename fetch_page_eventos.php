@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
 <div id="content">
     
 			<hr/>
-		<strong>	  <p class="mb-0 text-uppercase" ><img src="includes/contraer31.png" id="mostrar3" style="cursor:pointer;"/>
+		<strong>	  <p class="mb-0 text-uppercase" ><img src="includes/contraer31.png" id="mostrar3" onclick="load(1);"style="cursor:pointer;"/>
 <img src="includes/contraer41.png" id="ocultar3" style="cursor:pointer;"/>&nbsp;&nbsp;&nbsp; FILTRO CALENDARIO DE EVENTOS</p></strong></div>
 
 
