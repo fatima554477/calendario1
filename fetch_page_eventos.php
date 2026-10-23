@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
 <div id="content">
     
 			<hr/>
-		<strong>	  <p class="mb-0 text-uppercase" ><img src="includes/contraer31.png" id="mostrar3" onclick="load(1);"style="cursor:pointer;"/>
+		<strong>	  <p class="mb-0 text-uppercase" ><img src="includes/contraer31.png" id="mostrar3" style="cursor:pointer;"/>
 <img src="includes/contraer41.png" id="ocultar3" style="cursor:pointer;"/>&nbsp;&nbsp;&nbsp; FILTRO CALENDARIO DE EVENTOS</p></strong></div>
 
 
@@ -57,9 +57,8 @@ document.addEventListener("DOMContentLoaded", function () {
 <td width="30%" align="center">
 	<span id="mostrar">MOSTRAR</span>
     <select class="form-select mb-3" id="per_page" onchange="load(1);">
-        <option value="6"  <?php if($_REQUEST['per_page']=='6')  echo 'selected'; ?>>6</option>
-        <option value="7"  <?php if($_REQUEST['per_page']=='7')  echo 'selected'; ?>>7</option>
-        <option value="10" <?php if($_REQUEST['per_page']=='10') echo 'selected'; ?>>10</option>
+    
+        <option value="7" <?php if($_REQUEST['per_page']=='7') echo 'selected'; ?>>7</option>
         <option value="15" <?php if($_REQUEST['per_page']=='15') echo 'selected'; ?>>15</option>
         <option value="20" <?php if($_REQUEST['per_page']=='20') echo 'selected'; ?>>20</option>
         <option value="50" <?php if($_REQUEST['per_page']=='50') echo 'selected'; ?>>50</option>

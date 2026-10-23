@@ -242,7 +242,7 @@ $('#'+borra_id_ae).load(location.href + ' #'+borra_id_ae);
  
   var personal_id = $(this).attr("id");
   $.ajax({
-    url: 'listadeEVENTOS/vistapreviaeventos.php',
+    url:'calendariodeeventos2/vistapreviaeventos.php',
    method:"POST",
    data:{personal_id:personal_id},
     beforeSend:function(){  
@@ -264,7 +264,7 @@ $("#GUARDAR_NUMERO_EVENTO").click(function(){
 const formData = new FormData($('#numeroeventosform')[0]);
 
 $.ajax({
-    url: 'calendariodeeventos/controladorCE.php',
+    url:'calendariodeeventos/controladorCE.php',
     type: 'POST',
     dataType: 'html',
     data: formData,
