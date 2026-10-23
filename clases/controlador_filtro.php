@@ -250,28 +250,45 @@ if($database->plantilla_filtro($nombreTabla,"STATUS_EVENTO",$altaeventos,$DEPART
 <?php 
 if($database->plantilla_filtro($nombreTabla,"MONEDAS",$altaeventos,$DEPARTAMENTO)=="si"){ ?><th style="background:#c9e8e8;text-align:center">TIPO DE MONEDA</th>
 <?php } ?>  
-<?php 
-if($database->plantilla_filtro($nombreTabla,"MONTOC_TOTAL_EVENTO",$altaeventos,$DEPARTAMENTO)=="si"){ ?><th style="background:#c9e8e8">MONTO TOTAL COTIZADO<br><a style="color:red;font:7px">&nbsp; CON IVA SIN BOLETOS</th>
-<?php } ?>
-<?php 
-if($database->plantilla_filtro($nombreTabla,"CANTIDAD_PORCENTAJEV",$altaeventos,$DEPARTAMENTO)=="si"){ ?><th style="background:#c9e8e8">MONTO TOTAL COTIZADO <br><a style="color:red;font:7px">&nbsp;SIN IVA SIN BOLETOS</a></th>
-<?php } ?>
-<?php 
-if($database->plantilla_filtro($nombreTabla,"MONTO_TOTAL_AVION",$altaeventos,$DEPARTAMENTO)=="si"){ ?><th style="text-align:center;background:#c9e8e8">MONTO TOTAL COTIZADO<br><a style="color:red;font:7px">&nbsp; DE BOLETOS DE AVION CON IVA</th>                                
-<?php } ?>
-<?php 
-if($database->plantilla_filtro($nombreTabla,"TOTAL_AVION_SINIVA",$altaeventos,$DEPARTAMENTO)=="si"){ ?><th style="text-align:center;background:#c9e8e8">MONTO TOTAL COTIZADO<br><a style="color:red;font:7px">&nbsp; DE BOLETOS DE AVION SIN IVA</th>                                
+
+<?php
+if (
+    $database->variablespermisos('', 'monto_IVABOLETO', 'ver') == 'si'
+    && $database->plantilla_filtro($nombreTabla,"MONTOC_TOTAL_EVENTO",$altaeventos,$DEPARTAMENTO)=="si"){ ?>
+<th style="background:#c9e8e8">MONTO TOTAL COTIZADO<br><a style="color:red;font:7px">&nbsp; CON IVA SIN BOLETOS</th>
 <?php } ?>
 
 
-<?php 
-if($database->plantilla_filtro($nombreTabla,"PORCENTAJE_FEE",$altaeventos,$DEPARTAMENTO)=="si"){ ?><th style="background:#c9e8e8;text-align:center">PORCENTAJE FEE <br>COBRADO AL CLIENTE:</th>
+
+   <?php if($database->variablespermisos('','monto_SINIVABOLETO','ver')=='si'
+   
+   && $database->plantilla_filtro($nombreTabla,"CANTIDAD_PORCENTAJEV",$altaeventos,$DEPARTAMENTO)=="si"){ ?>
+   <th style="text-align:center;background:#c9e8e8">MONTO TOTAL COTIZADO <br><a style="color:red;font:7px">&nbsp;CON SERVICIO SIN IVA Y SIN BOLETOS</a></th>
 <?php } ?>
-<?php 
-if($database->plantilla_filtro($nombreTabla,"FEE_COBRADO",$altaeventos,$DEPARTAMENTO)=="si"){ ?><th style="background:#c9e8e8;text-align:center">FEE COBRADO AL CLIENTE:</th>
+
+
+   <?php if($database->variablespermisos('','monto_BOLETOIVA','ver')=='si'
+   && $database->plantilla_filtro($nombreTabla,"MONTO_TOTAL_AVION",$altaeventos,$DEPARTAMENTO)=="si"){ ?><th style="text-align:center;background:#c9e8e8">MONTO TOTAL COTIZADO<br><a style="color:red;font:7px">&nbsp; DE BOLETOS DE AVION CON IVA</th>                                
 <?php } ?>
-<?php 
-if($database->plantilla_filtro($nombreTabla,"MONTO_TOTAL_DEL_EVENTO",$altaeventos,$DEPARTAMENTO)=="si"){ ?><th style="background:#c9e8e8;text-align:center">MONTO TOTAL DEL EVENTO</th>
+
+
+   <?php if($database->variablespermisos('','monto_BOLETOSINIVA','ver')=='si'
+&& $database->plantilla_filtro($nombreTabla,"TOTAL_AVION_SINIVA",$altaeventos,$DEPARTAMENTO)=="si"){ ?><th style="text-align:center;background:#c9e8e8">MONTO TOTAL COTIZADO<br><a style="color:red;font:7px">&nbsp; DE BOLETOS DE AVION SIN IVA</th>                                
+<?php } ?>
+
+
+
+   <?php if($database->variablespermisos('','monto_FE','ver')=='si'
+&& $database->plantilla_filtro($nombreTabla,"PORCENTAJE_FEE",$altaeventos,$DEPARTAMENTO)=="si"){ ?><th style="background:#c9e8e8;text-align:center">PORCENTAJE FEE <br>COBRADO AL CLIENTE:</th>
+<?php } ?>
+
+
+   <?php if($database->variablespermisos('','monto_FE','ver')=='si'
+&& $database->plantilla_filtro($nombreTabla,"FEE_COBRADO",$altaeventos,$DEPARTAMENTO)=="si"){ ?><th style="background:#c9e8e8;text-align:center">FEE COBRADO AL CLIENTE:</th>
+<?php } ?>
+
+   <?php if($database->variablespermisos('','monto_TOTALEVE','ver')=='si'
+&& $database->plantilla_filtro($nombreTabla,"MONTO_TOTAL_DEL_EVENTO",$altaeventos,$DEPARTAMENTO)=="si"){ ?><th style="background:#c9e8e8;text-align:center">MONTO TOTAL DEL EVENTO</th>
 <?php } ?>
 
 <?php 
@@ -371,37 +388,39 @@ if($database->plantilla_filtro($nombreTabla,"SERVICIO_OTORGAR",$altaeventos,$DEP
 
 
 
-<?php 
-if($database->plantilla_filtro($nombreTabla,"SUBIR_COTIZACION",$altaeventos,$DEPARTAMENTO)=="si"){ ?><th style="background:#c9e8e8;text-align:center">SUBIR COTIZACIÓN PARA EL CLIENTE</th>
+   <?php if($database->variablespermisos('','SUBIRT1','ver')=='si'
+&& $database->plantilla_filtro($nombreTabla,"SUBIR_COTIZACION",$altaeventos,$DEPARTAMENTO)=="si"){ ?><th style="background:#c9e8e8;text-align:center">COTIZACIÓN PARA EL CLIENTE</th>
 <?php } ?>
-<?php 
-if($database->plantilla_filtro($nombreTabla,"SUBIR_ORDEN_COMPRA",$altaeventos,$DEPARTAMENTO)=="si"){ ?><th style="background:#c9e8e8;text-align:center">SUBIR ORDEN DE COMPRA DEL CLIENTE</th>
+   <?php if($database->variablespermisos('','SUBIRT2','ver')=='si'
+&& $database->plantilla_filtro($nombreTabla,"SUBIR_ORDEN_COMPRA",$altaeventos,$DEPARTAMENTO)=="si"){ ?><th style="background:#c9e8e8;text-align:center">ORDEN DE COMPRA DEL CLIENTE</th>
 <?php } ?>
-<?php 
-if($database->plantilla_filtro($nombreTabla,"SURIR_CONTRATO",$altaeventos,$DEPARTAMENTO)=="si"){ ?><th style="background:#c9e8e8;text-align:center">SUBIR COTIZACIÓN FIRMADA POR<br/> EL CLIENTE AUTORIZANDO EL EVENTO
+   <?php if($database->variablespermisos('','SUBIRT3','ver')=='si'
+&& $database->plantilla_filtro($nombreTabla,"SURIR_CONTRATO",$altaeventos,$DEPARTAMENTO)=="si"){ ?><th style="background:#c9e8e8;text-align:center">COTIZACIÓN FIRMADA POR<br/> EL CLIENTE AUTORIZANDO EL EVENTO
 <?php } ?>
-<?php 
-if($database->plantilla_filtro($nombreTabla,"SUBIR_COTIZACION_FIRMADA",$altaeventos,$DEPARTAMENTO)=="si"){ ?><th style="background:#c9e8e8;text-align:center">SUBIR COTIZACIÓN FIRMADA POR<BR> EL CLIENTE AUTORIZANDO EL EVENTO</th>
+   <?php if($database->variablespermisos('','SUBIRT4','ver')=='si'
+&& $database->plantilla_filtro($nombreTabla,"SUBIR_COTIZACION_FIRMADA",$altaeventos,$DEPARTAMENTO)=="si"){ ?><th style="background:#c9e8e8;text-align:center">COTIZACIÓN FIRMADA POR<BR> EL CLIENTE AUTORIZANDO EL EVENTO</th>
 <?php } ?>
-<?php 
-if($database->plantilla_filtro($nombreTabla,"LOGO_CLIENTE",$altaeventos,$DEPARTAMENTO)=="si"){ ?><th style="background:#c9e8e8;text-align:center">LOGO DEL CLIENTE</th>
-<?php } ?>
-
-
-<?php 
-if($database->plantilla_filtro($nombreTabla,"IMAGEN_EVENTO",$altaeventos,$DEPARTAMENTO)=="si"){ ?><th style="background:#c9e8e8;text-align:center">IMÁGEN DEL EVENTO</th>
-<?php } ?>
-<?php 
-if($database->plantilla_filtro($nombreTabla,"FALTA_POR_COBRAR",$altaeventos,$DEPARTAMENTO)=="si"){ ?><th style="background:#CCFF00;text-align:center">FALTA POR COBRAR<br> AL CLIENTE </th>
-<?php } ?>
-<?php 
-if($database->plantilla_filtro($nombreTabla,"FALTA_POR_FACTURAR",$altaeventos,$DEPARTAMENTO)=="si"){ ?><th style="background:#CCFF00;text-align:center">FALTA POR FACTURAR<br> AL CLIENTE</th>
+   <?php if($database->variablespermisos('','SUBIRT5','ver')=='si'
+&& $database->plantilla_filtro($nombreTabla,"LOGO_CLIENTE",$altaeventos,$DEPARTAMENTO)=="si"){ ?><th style="background:#c9e8e8;text-align:center">LOGO DEL CLIENTE</th>
 <?php } ?>
 
-<?php 
-if($database->plantilla_filtro($nombreTabla,"PERDIDA_FISCAL",$altaeventos,$DEPARTAMENTO)=="si"){ ?><th style="background:#CCFF00;text-align:center">46% PERDIDA DE COSTO FISCAL</th>
+
+   <?php if($database->variablespermisos('','SUBIRT6','ver')=='si'
+&& $database->plantilla_filtro($nombreTabla,"IMAGEN_EVENTO",$altaeventos,$DEPARTAMENTO)=="si"){ ?><th style="background:#c9e8e8;text-align:center">IMÁGEN DEL EVENTO</th>
+<?php } ?>
+   <?php if($database->variablespermisos('','SUBIRT7','ver')=='si'
+&& $database->plantilla_filtro($nombreTabla,"FALTA_POR_COBRAR",$altaeventos,$DEPARTAMENTO)=="si"){ ?><th style="background:#CCFF00;text-align:center">FALTA POR COBRAR<br> AL CLIENTE </th>
+<?php } ?>
+   <?php if($database->variablespermisos('','SUBIRT8','ver')=='si'
+&& $database->plantilla_filtro($nombreTabla,"FALTA_POR_FACTURAR",$altaeventos,$DEPARTAMENTO)=="si"){ ?><th style="background:#CCFF00;text-align:center">FALTA POR FACTURAR<br> AL CLIENTE</th>
 <?php } ?>
 
+   <?php if($database->variablespermisos('','SUBIRT9','ver')=='si'
+&& $database->plantilla_filtro($nombreTabla,"PERDIDA_FISCAL",$altaeventos,$DEPARTAMENTO)=="si"){ ?><th style="background:#CCFF00;text-align:center">46% PERDIDA DE COSTO FISCAL</th>
+<?php } ?>
+<th style="background:#c9e8e8;text-align:center">
+<th style="background:#c9e8e8;text-align:center">
+<th style="background:#c9e8e8;text-align:center">
 
 
             </tr>
@@ -493,32 +512,43 @@ if($database->plantilla_filtro($nombreTabla,"MONEDAS",$altaeventos,$DEPARTAMENTO
 
 
 
-<?php  
-if($database->plantilla_filtro($nombreTabla,"MONTOC_TOTAL_EVENTO",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="background:#c9e8e8;text-align:center"><input type="text" class="form-control" id="MONTOC_TOTAL_EVENTO" value="<?php 
+   <?php if($database->variablespermisos('','monto_IVABOLETO','ver')=='si'
+   && $database->plantilla_filtro($nombreTabla,"MONTOC_TOTAL_EVENTO",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="background:#c9e8e8;text-align:center"><input type="text" class="form-control" id="MONTOC_TOTAL_EVENTO" value="<?php 
 echo $MONTOC_TOTAL_EVENTO; ?>"></td>
 <?php } ?>
-<?php  
-if($database->plantilla_filtro($nombreTabla,"CANTIDAD_PORCENTAJEV",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="background:#c9e8e8;text-align:center"><input type="text" class="form-control" id="CANTIDAD_PORCENTAJEV" value="<?php 
+
+
+
+   <?php if($database->variablespermisos('','monto_SINIVABOLETO','ver')=='si'
+&& $database->plantilla_filtro($nombreTabla,"CANTIDAD_PORCENTAJEV",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="background:#c9e8e8;text-align:center"><input type="text" class="form-control" id="CANTIDAD_PORCENTAJEV" value="<?php 
 echo $CANTIDAD_PORCENTAJEV; ?>"></td>
 <?php } ?>
-<?php  
-if($database->plantilla_filtro($nombreTabla,"MONTO_TOTAL_AVION",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="background:#c9e8e8"><input type="text" class="form-control" id="MONTO_TOTAL_AVION" value="<?php 
+
+
+
+   <?php if($database->variablespermisos('','monto_BOLETOIVA','ver')=='si'  
+&& $database->plantilla_filtro($nombreTabla,"MONTO_TOTAL_AVION",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="background:#c9e8e8"><input type="text" class="form-control" id="MONTO_TOTAL_AVION" value="<?php 
 echo $MONTO_TOTAL_AVION; ?>"></td>
 <?php } ?>
-<?php  
-if($database->plantilla_filtro($nombreTabla,"TOTAL_AVION_SINIVA",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="background:#c9e8e8"><input type="text" class="form-control" id="TOTAL_AVION_SINIVA_1" value="<?php 
+
+   <?php if($database->variablespermisos('','monto_BOLETOSINIVA','ver')=='si' 
+&& $database->plantilla_filtro($nombreTabla,"TOTAL_AVION_SINIVA",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="background:#c9e8e8"><input type="text" class="form-control" id="TOTAL_AVION_SINIVA_1" value="<?php 
 echo $TOTAL_AVION_SINIVA; ?>"></td>
 <?php } ?>
-<?php  
-if($database->plantilla_filtro($nombreTabla,"PORCENTAJE_FEE",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="background:#c9e8e8"><input type="text" class="form-control" id="PORCENTAJE_FEE_1" value="<?php 
+
+
+
+
+   <?php if($database->variablespermisos('','monto_FE','ver')=='si'
+&&$database->plantilla_filtro($nombreTabla,"PORCENTAJE_FEE",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="background:#c9e8e8"><input type="text" class="form-control" id="PORCENTAJE_FEE_1" value="<?php 
 echo $PORCENTAJE_FEE; ?>"></td>
 <?php } ?>
-<?php  
-if($database->plantilla_filtro($nombreTabla,"FEE_COBRADO",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="background:#c9e8e8"><input type="text" class="form-control" id="FEE_COBRADO" value="<?php 
+   <?php if($database->variablespermisos('','monto_FE','ver')=='si'
+&& $database->plantilla_filtro($nombreTabla,"FEE_COBRADO",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="background:#c9e8e8"><input type="text" class="form-control" id="FEE_COBRADO" value="<?php 
 echo $FEE_COBRADO; ?>"></td>
 <?php } ?>
-<?php  
-if($database->plantilla_filtro($nombreTabla,"MONTO_TOTAL_DEL_EVENTO",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="background:#c9e8e8;text-align:center"><input type="text" class="form-control" id="MONTO_TOTAL_DEL_EVENTO" value="<?php 
+   <?php if($database->variablespermisos('','monto_TOTALEVE','ver')=='si'
+&& $database->plantilla_filtro($nombreTabla,"MONTO_TOTAL_DEL_EVENTO",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="background:#c9e8e8;text-align:center"><input type="text" class="form-control" id="MONTO_TOTAL_DEL_EVENTO" value="<?php 
 echo $MONTO_TOTAL_DEL_EVENTO; ?>"></td>
 <?php } ?>
 
@@ -653,46 +683,49 @@ if($database->plantilla_filtro($nombreTabla,"SERVICIO_OTORGAR",$altaeventos,$DEP
 echo $SERVICIO_OTORGAR; ?>"></td>
 <?php } ?> 
 
-<?php  
-if($database->plantilla_filtro($nombreTabla,"SUBIR_COTIZACION",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="background:#c9e8e8;text-align:center"><input type="text" class="form-control" id="SUBIR_COTIZACION" value="<?php
+   <?php if($database->variablespermisos('','SUBIRT1','ver')=='si'
+&& $database->plantilla_filtro($nombreTabla,"SUBIR_COTIZACION",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="background:#c9e8e8;text-align:center"><input type="text" class="form-control" id="SUBIR_COTIZACION" value="<?php
 echo $SUBIR_COTIZACION; ?>"></td>
 <?php } ?>
-<?php  
-if($database->plantilla_filtro($nombreTabla,"SUBIR_ORDEN_COMPRA",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="background:#c9e8e8;text-align:center"><input type="text" class="form-control" id="SUBIR_ORDEN_COMPRA" value="<?php
+   <?php if($database->variablespermisos('','SUBIRT2','ver')=='si'
+&& $database->plantilla_filtro($nombreTabla,"SUBIR_ORDEN_COMPRA",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="background:#c9e8e8;text-align:center"><input type="text" class="form-control" id="SUBIR_ORDEN_COMPRA" value="<?php
 echo $SUBIR_ORDEN_COMPRA; ?>"></td>
 <?php } ?>
-<?php  
-if($database->plantilla_filtro($nombreTabla,"SURIR_CONTRATO",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="background:#c9e8e8;text-align:center"><input type="text" class="form-control" id="SUBIR_CONTRATO_FIRMADO" value="<?php
+   <?php if($database->variablespermisos('','SUBIRT3','ver')=='si'
+&& $database->plantilla_filtro($nombreTabla,"SURIR_CONTRATO",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="background:#c9e8e8;text-align:center"><input type="text" class="form-control" id="SUBIR_CONTRATO_FIRMADO" value="<?php
 echo $SUBIR_CONTRATO_FIRMADO; ?>"></td>
 <?php } ?>
-<?php  
-if($database->plantilla_filtro($nombreTabla,"SUBIR_COTIZACION_FIRMADA",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="background:#c9e8e8;text-align:center"><input type="text" class="form-control" id="SUBIR_COTIZACION_FIRMADA" value="<?php
+   <?php if($database->variablespermisos('','SUBIRT4','ver')=='si'
+&& $database->plantilla_filtro($nombreTabla,"SUBIR_COTIZACION_FIRMADA",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="background:#c9e8e8;text-align:center"><input type="text" class="form-control" id="SUBIR_COTIZACION_FIRMADA" value="<?php
 echo $SUBIR_COTIZACION_FIRMADA; ?>"></td>
-<?php } ?><?php  
-if($database->plantilla_filtro($nombreTabla,"LOGO_CLIENTE",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="background:#c9e8e8;text-align:center"><input type="text" class="form-control" id="LOGO_CLIENTE" value="<?php 
+<?php } ?>
+
+   <?php if($database->variablespermisos('','SUBIRT5','ver')=='si'
+&& $database->plantilla_filtro($nombreTabla,"LOGO_CLIENTE",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="background:#c9e8e8;text-align:center"><input type="text" class="form-control" id="LOGO_CLIENTE" value="<?php 
 echo $LOGO_CLIENTE; ?>"></td>
 <?php } ?>
 
-<?php  
-if($database->plantilla_filtro($nombreTabla,"IMAGEN_EVENTO",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="background:#c9e8e8;text-align:center"><input type="text" class="form-control" id="IMAGEN_EVENTO" value="<?php 
+   <?php if($database->variablespermisos('','SUBIRT6','ver')=='si'
+&& $database->plantilla_filtro($nombreTabla,"IMAGEN_EVENTO",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="background:#c9e8e8;text-align:center"><input type="text" class="form-control" id="IMAGEN_EVENTO" value="<?php 
 echo $IMAGEN_EVENTO; ?>"></td>
 <?php } ?>
-<?php  
-if($database->plantilla_filtro($nombreTabla,"FALTA_POR_COBRAR",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="background:#CCFF00;text-align:center"><input type="text" class="form-control" id="FALTA_POR_COBRAR_1" value="<?php 
+   <?php if($database->variablespermisos('','SUBIRT7','ver')=='si'
+&& $database->plantilla_filtro($nombreTabla,"FALTA_POR_COBRAR",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="background:#CCFF00;text-align:center"><input type="text" class="form-control" id="FALTA_POR_COBRAR_1" value="<?php 
 echo $FALTA_POR_COBRAR; ?>"></td>
 <?php } ?>
-<?php  
-if($database->plantilla_filtro($nombreTabla,"FALTA_POR_FACTURAR",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="background:#CCFF00;text-align:center"><input type="text" class="form-control" id="FALTA_POR_FACTURAR_1" value="<?php 
+   <?php if($database->variablespermisos('','SUBIRT8','ver')=='si'
+&& $database->plantilla_filtro($nombreTabla,"FALTA_POR_FACTURAR",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="background:#CCFF00;text-align:center"><input type="text" class="form-control" id="FALTA_POR_FACTURAR_1" value="<?php 
 echo $FALTA_POR_FACTURAR; ?>"></td>
 <?php } ?>
-<?php  
-if($database->plantilla_filtro($nombreTabla,"PERDIDA_FISCAL",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="background:#CCFF00;text-align:center"><input type="text" class="form-control" id="PERDIDA_FISCAL_1" value="<?php 
+   <?php if($database->variablespermisos('','SUBIRT9','ver')=='si'
+&& $database->plantilla_filtro($nombreTabla,"PERDIDA_FISCAL",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="background:#CCFF00;text-align:center"><input type="text" class="form-control" id="PERDIDA_FISCAL_1" value="<?php 
 echo $PERDIDA_FISCAL; ?>"></td>
 <?php } ?>
 
 	
 		<td style="background:#c9e8e8"></td>
 		<td style="background:#c9e8e8"></td>
+
             </tr>			
         </thead>
 		<?php 	if ($numrows<0){ ?>
@@ -777,9 +810,8 @@ echo $PERDIDA_FISCAL; ?>"></td>
 $colspan += 1; 
 ?>
 
-
 <td style="text-align:center">
-<a href="calendarioDEeventos2.php?idevento=<?php echo $row['id04altaeventos']; ?>"><?php echo $row['NUMERO_EVENTO'];?></a>
+<a href="calendarioDEeventos2.php?idevento=<?php echo $row['id04altaeventos']; ?>" target="_blank" rel="noopener noreferrer"><?php echo $row['NUMERO_EVENTO'];?></a>
 </td>
 <?php } ?>
 
@@ -846,7 +878,8 @@ $colspan += 1;
 <?php } ?>
 
 
-<?php  if($database->plantilla_filtro($nombreTabla,"MONTOC_TOTAL_EVENTO",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="text-align:center">$<?php echo number_format($row['MONTOC_TOTAL_EVENTO'],2,'.',',');
+   <?php if($database->variablespermisos('','monto_IVABOLETO','ver')=='si'
+   && $database->plantilla_filtro($nombreTabla,"MONTOC_TOTAL_EVENTO",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="text-align:center">$<?php echo number_format($row['MONTOC_TOTAL_EVENTO'],2,'.',',');
 		$totales = 'si';
 $MONTOC_TOTAL_EVENTO12 += $row['MONTOC_TOTAL_EVENTO'];
 ?></td>
@@ -855,33 +888,48 @@ $MONTOC_TOTAL_EVENTO12 += $row['MONTOC_TOTAL_EVENTO'];
 
 
 
-<?php  if($database->plantilla_filtro($nombreTabla,"CANTIDAD_PORCENTAJEV",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="text-align:center">$<?php echo number_format($row['CANTIDAD_PORCENTAJEV'],2,'.',',');
+   <?php if($database->variablespermisos('','monto_SINIVABOLETO','ver')=='si'
+   && $database->plantilla_filtro($nombreTabla,"CANTIDAD_PORCENTAJEV",$altaeventos,$DEPARTAMENTO)=="si"){ ?>
+   <td style="text-align:center">$<?php echo number_format($row['CANTIDAD_PORCENTAJEV'],2,'.',',');
 		$totales = 'si';
 $CANTIDAD_PORCENTAJEV12 += $row['CANTIDAD_PORCENTAJEV'];
 ?></td>
 <?php } ?>
-<?php  if($database->plantilla_filtro($nombreTabla,"MONTO_TOTAL_AVION",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="text-align:center">$<?php echo  number_format($row['MONTO_TOTAL_AVION'],2,'.',',');
+
+
+
+   <?php if($database->variablespermisos('','monto_BOLETOIVA','ver')=='si'
+   && $database->plantilla_filtro($nombreTabla,"MONTO_TOTAL_AVION",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="text-align:center">$<?php echo  number_format($row['MONTO_TOTAL_AVION'],2,'.',',');
 		$totales = 'si';
 $MONTO_TOTAL_AVION12 += $row['MONTO_TOTAL_AVION'];
 ?></td>
 <?php } ?>
-<?php  if($database->plantilla_filtro($nombreTabla,"TOTAL_AVION_SINIVA",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="text-align:center">$<?php
+
+   <?php if($database->variablespermisos('','monto_BOLETOSINIVA','ver')=='si'
+&&   $database->plantilla_filtro($nombreTabla,"TOTAL_AVION_SINIVA",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="text-align:center">$<?php
 		$totales = 'si';
 echo  number_format($row['TOTAL_AVION_SINIVA'],2,'.',',');
 $TOTAL_AVION_SINIVA12 += $row['TOTAL_AVION_SINIVA'];
 ?></td>
 <?php } ?>
 
-<?php  if($database->plantilla_filtro($nombreTabla,"PORCENTAJE_FEE",$altaeventos,$DEPARTAMENTO)=="si"){$colspan += 1;	 ?><td style="text-align:center">%<?php echo $row['PORCENTAJE_FEE']; ?></td>
+
+   <?php if($database->variablespermisos('','monto_FE','ver')=='si'
+&& $database->plantilla_filtro($nombreTabla,"PORCENTAJE_FEE",$altaeventos,$DEPARTAMENTO)=="si"){$colspan += 1;	 ?><td style="text-align:center">%<?php echo $row['PORCENTAJE_FEE']; ?></td>
 
 
 <?php } ?>
-<?php  if($database->plantilla_filtro($nombreTabla,"FEE_COBRADO",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="text-align:center">$<?php echo  number_format($row['FEE_COBRADO'],2,'.',',');
+
+
+
+   <?php if($database->variablespermisos('','monto_FE','ver')=='si'
+&& $database->plantilla_filtro($nombreTabla,"FEE_COBRADO",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="text-align:center">$<?php echo  number_format($row['FEE_COBRADO'],2,'.',',');
 		$totales = 'si';
 $FEE_COBRADO12 += $row['FEE_COBRADO'];
 ?></td>
 <?php } ?>
-<?php  if($database->plantilla_filtro($nombreTabla,"MONTO_TOTAL_DEL_EVENTO",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="text-align:center"><?php
+   <?php if($database->variablespermisos('','monto_TOTALEVE','ver')=='si'
+&& $database->plantilla_filtro($nombreTabla,"MONTO_TOTAL_DEL_EVENTO",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="text-align:center"><?php
 		$totales = 'si';
 echo number_format($row['MONTO_TOTAL_DEL_EVENTO'],2,'.',',');
 $MONTO_TOTAL_DEL_EVENTO12 += $row['MONTO_TOTAL_DEL_EVENTO']; 
@@ -997,26 +1045,43 @@ if (!empty($fecha6) && $fecha6 !== '0000-00-00' && $fecha6 !== '0000-00-00 00:00
 
 
 
-<?php  if($database->plantilla_filtro($nombreTabla,"SUBIR_COTIZACION",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="text-align:center"><?php echo $urlSUBIR_COTIZACION; ?></td>
-<?php } ?>
-<?php  if($database->plantilla_filtro($nombreTabla,"SUBIR_ORDEN_COMPRA",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="text-align:center"><?php echo $urlSUBIR_ORDEN_COMPRA; ?></td>
-<?php } ?>
-<?php  if($database->plantilla_filtro($nombreTabla,"SURIR_CONTRATO",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="text-align:center"><?php echo $urlSUBIR_CONTRATO_FIRMADO; ?></td>
-<?php } ?>
-<?php  if($database->plantilla_filtro($nombreTabla,"SUBIR_COTIZACION_FIRMADA",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="text-align:center"><?php echo $urlSUBIR_COTIZACION_FIRMADA; ?></td>
-<?php } ?>
-<?php  if($database->plantilla_filtro($nombreTabla,"LOGO_CLIENTE",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="text-align:center"><?php echo $urlLOGO_CLIENTE; ?></td>
+   <?php if($database->variablespermisos('','SUBIRT1','ver')=='si'
+&& $database->plantilla_filtro($nombreTabla,"SUBIR_COTIZACION",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="text-align:center"><?php echo $urlSUBIR_COTIZACION; ?></td>
 <?php } ?>
 
 
-<?php  if($database->plantilla_filtro($nombreTabla,"IMAGEN_EVENTO",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="text-align:center"><?php echo $urlIMAGEN_EVENTO; ?></td>
+   <?php if($database->variablespermisos('','SUBIRT2','ver')=='si'
+&& $database->plantilla_filtro($nombreTabla,"SUBIR_ORDEN_COMPRA",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="text-align:center"><?php echo $urlSUBIR_ORDEN_COMPRA; ?></td>
 <?php } ?>
 
 
-<?php  
+   <?php if($database->variablespermisos('','SUBIRT3','ver')=='si'
+&& $database->plantilla_filtro($nombreTabla,"SURIR_CONTRATO",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="text-align:center"><?php echo $urlSUBIR_CONTRATO_FIRMADO; ?></td>
+<?php } ?>
+
+
+   <?php if($database->variablespermisos('','SUBIRT4','ver')=='si'
+&& $database->plantilla_filtro($nombreTabla,"SUBIR_COTIZACION_FIRMADA",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="text-align:center"><?php echo $urlSUBIR_COTIZACION_FIRMADA; ?></td>
+<?php } ?>
+
+
+   <?php if($database->variablespermisos('','SUBIRT5','ver')=='si'
+&& $database->plantilla_filtro($nombreTabla,"LOGO_CLIENTE",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="text-align:center"><?php echo $urlLOGO_CLIENTE; ?></td>
+<?php } ?>
+
+
+   <?php if($database->variablespermisos('','SUBIRT6','ver')=='si'
+&& $database->plantilla_filtro($nombreTabla,"IMAGEN_EVENTO",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="text-align:center"><?php echo $urlIMAGEN_EVENTO; ?></td>
+<?php } ?>
+
+ <?php
 $montoTotalEvento = $database->montoTotalEvento($row['id04altaeventos']);
+?>
+   <?php if($database->variablespermisos('','SUBIRT7','ver')=='si'
+&&  
 
-if($database->plantilla_filtro($nombreTabla,"FALTA_POR_COBRAR",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="text-align:center">$<?php
+
+ $database->plantilla_filtro($nombreTabla,"FALTA_POR_COBRAR",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="text-align:center">$<?php
 $faltaPorCobrar = $database->FALATA_POR_COBRAR($row['id04altaeventos'],$montoTotalEvento);
 echo $faltaPorCobrar;
  $totales = 'si';
@@ -1028,7 +1093,8 @@ echo $faltaPorCobrar;
  </td>
 <?php } ?>
 
-<?php  if($database->plantilla_filtro($nombreTabla,"FALTA_POR_FACTURAR",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="text-align:center">$<?php
+   <?php if($database->variablespermisos('','SUBIRT8','ver')=='si'
+&& $database->plantilla_filtro($nombreTabla,"FALTA_POR_FACTURAR",$altaeventos,$DEPARTAMENTO)=="si"){ ?><td style="text-align:center">$<?php
 $faltaPorFacturar = $database->FALATA_POR_FACTURAR($row['id04altaeventos'],$montoTotalEvento);
 echo $faltaPorFacturar;
  $totales = 'si';
@@ -1038,9 +1104,8 @@ echo $faltaPorFacturar;
 ?></td>
 <?php } ?>
 
-<?php
-
- if($database->plantilla_filtro($nombreTabla,"PERDIDA_FISCAL",$altaeventos,$DEPARTAMENTO)=="si"){ ?>
+   <?php if($database->variablespermisos('','SUBIRT9','ver')=='si'
+&& $database->plantilla_filtro($nombreTabla,"PERDIDA_FISCAL",$altaeventos,$DEPARTAMENTO)=="si"){ ?>
 
 <td style="text-align:center">$<?php
 $perdidaFiscal = $database->PERDIDA_DE_COSTO_FISCAL($row['NUMERO_EVENTO']);
@@ -1050,6 +1115,8 @@ echo $perdidaFiscal;
 
 ?></td>
 <?php } ?>
+<td></td>
+<td></td>
 
 
 			<td>
@@ -1150,9 +1217,10 @@ echo $perdidaFiscal;
         <td style="text-align:right; padding-right:45px;">
             <strong style="font-size:16px">TOTALES</strong></td>
     <?php } ?>
-
-    <!-- MONTOC_TOTAL_EVENTO (TOTAL) -->
-    <?php if($database->plantilla_filtro($nombreTabla,"MONTOC_TOTAL_EVENTO",$altaeventos,$DEPARTAMENTO)=="si"){ ?>
+  <?php
+if (
+    $database->variablespermisos('', 'monto_IVABOLETO', 'ver') == 'si'
+    && $database->plantilla_filtro($nombreTabla,"MONTOC_TOTAL_EVENTO",$altaeventos,$DEPARTAMENTO)=="si"){ ?>
         <td style="text-align:center">
             <strong style="font-size:16px">
                 $<?php echo number_format($MONTOC_TOTAL_EVENTO12,2,'.',','); ?>
@@ -1160,8 +1228,10 @@ echo $perdidaFiscal;
         </td>
     <?php } ?>
 
-    <!-- CANTIDAD_PORCENTAJEV (TOTAL) -->
-    <?php if($database->plantilla_filtro($nombreTabla,"CANTIDAD_PORCENTAJEV",$altaeventos,$DEPARTAMENTO)=="si"){ ?>
+  <?php
+if (
+    $database->variablespermisos('', 'monto_SINIVABOLETO', 'ver') == 'si'
+    && $database->plantilla_filtro($nombreTabla,"CANTIDAD_PORCENTAJEV",$altaeventos,$DEPARTAMENTO)=="si"){ ?>
         <td style="text-align:center">
             <strong style="font-size:16px">
                 $<?php echo number_format($CANTIDAD_PORCENTAJEV12,2,'.',','); ?>
@@ -1169,8 +1239,10 @@ echo $perdidaFiscal;
         </td>
     <?php } ?>
 
-    <!-- MONTO_TOTAL_AVION (TOTAL) -->
-    <?php if($database->plantilla_filtro($nombreTabla,"MONTO_TOTAL_AVION",$altaeventos,$DEPARTAMENTO)=="si"){ ?>
+ <?php
+if (
+    $database->variablespermisos('', 'monto_BOLETOIVA', 'ver') == 'si'
+    && $database->plantilla_filtro($nombreTabla,"MONTO_TOTAL_AVION",$altaeventos,$DEPARTAMENTO)=="si"){ ?>
         <td style="text-align:center">
             <strong style="font-size:16px">
                 $<?php echo number_format($MONTO_TOTAL_AVION12,2,'.',','); ?>
@@ -1178,8 +1250,10 @@ echo $perdidaFiscal;
         </td>
     <?php } ?>
 
-    <!-- TOTAL_AVION_SINIVA (TOTAL) -->
-    <?php if($database->plantilla_filtro($nombreTabla,"TOTAL_AVION_SINIVA",$altaeventos,$DEPARTAMENTO)=="si"){ ?>
+  <?php
+if (
+    $database->variablespermisos('', 'monto_BOLETOSINIVA', 'ver') == 'si'
+    && $database->plantilla_filtro($nombreTabla,"TOTAL_AVION_SINIVA",$altaeventos,$DEPARTAMENTO)=="si"){ ?>
         <td style="text-align:center">
             <strong style="font-size:16px">
                 $<?php echo number_format($TOTAL_AVION_SINIVA12,2,'.',','); ?>
@@ -1187,13 +1261,13 @@ echo $perdidaFiscal;
         </td>
     <?php } ?>
 
-    <!-- PORCENTAJE_FEE (sin total, solo col vacía si existe) -->
-    <?php if($database->plantilla_filtro($nombreTabla,"PORCENTAJE_FEE",$altaeventos,$DEPARTAMENTO)=="si"){ ?>
+   <?php if($database->variablespermisos('','monto_FE','ver')=='si'
+&& $database->plantilla_filtro($nombreTabla,"PORCENTAJE_FEE",$altaeventos,$DEPARTAMENTO)=="si"){ ?>
         <td></td>
     <?php } ?>
 
-    <!-- FEE_COBRADO (TOTAL) -->
-    <?php if($database->plantilla_filtro($nombreTabla,"FEE_COBRADO",$altaeventos,$DEPARTAMENTO)=="si"){ ?>
+   <?php if($database->variablespermisos('','monto_FE','ver')=='si'
+&& $database->plantilla_filtro($nombreTabla,"FEE_COBRADO",$altaeventos,$DEPARTAMENTO)=="si"){ ?>
         <td style="text-align:center">
             <strong style="font-size:16px">
                 $<?php echo number_format($FEE_COBRADO12,2,'.',','); ?>
@@ -1201,8 +1275,8 @@ echo $perdidaFiscal;
         </td>
     <?php } ?>
 
-    <!-- MONTO_TOTAL_DEL_EVENTO (TOTAL) -->
-    <?php if($database->plantilla_filtro($nombreTabla,"MONTO_TOTAL_DEL_EVENTO",$altaeventos,$DEPARTAMENTO)=="si"){ ?>
+    <?php if($database->variablespermisos('','monto_TOTALEVE','ver')=='si'
+&& $database->plantilla_filtro($nombreTabla,"MONTO_TOTAL_DEL_EVENTO",$altaeventos,$DEPARTAMENTO)=="si"){ ?>
         <td style="text-align:center">
             <strong style="font-size:16px">
                 $<?php echo number_format($MONTO_TOTAL_DEL_EVENTO12,2,'.',','); ?>
@@ -1360,37 +1434,42 @@ echo $perdidaFiscal;
     <?php } ?>
 
     <!-- SUBIR_COTIZACION -->
-    <?php if($database->plantilla_filtro($nombreTabla,"SUBIR_COTIZACION",$altaeventos,$DEPARTAMENTO)=="si"){ ?>
+   <?php if($database->variablespermisos('','SUBIRT1','ver')=='si'
+&& $database->plantilla_filtro($nombreTabla,"SUBIR_COTIZACION",$altaeventos,$DEPARTAMENTO)=="si"){ ?>
         <td></td>
     <?php } ?>
 
     <!-- SUBIR_ORDEN_COMPRA -->
-    <?php if($database->plantilla_filtro($nombreTabla,"SUBIR_ORDEN_COMPRA",$altaeventos,$DEPARTAMENTO)=="si"){ ?>
+   <?php if($database->variablespermisos('','SUBIRT2','ver')=='si'
+&& $database->plantilla_filtro($nombreTabla,"SUBIR_ORDEN_COMPRA",$altaeventos,$DEPARTAMENTO)=="si"){ ?>
         <td></td>
     <?php } ?>
 
     <!-- SURIR_CONTRATO -->
-    <?php if($database->plantilla_filtro($nombreTabla,"SURIR_CONTRATO",$altaeventos,$DEPARTAMENTO)=="si"){ ?>
+    <?php if($database->variablespermisos('','SUBIRT3','ver')=='si'
+&& $database->plantilla_filtro($nombreTabla,"SURIR_CONTRATO",$altaeventos,$DEPARTAMENTO)=="si"){ ?>
         <td></td>
     <?php } ?>
 
     <!-- SUBIR_COTIZACION_FIRMADA -->
-    <?php if($database->plantilla_filtro($nombreTabla,"SUBIR_COTIZACION_FIRMADA",$altaeventos,$DEPARTAMENTO)=="si"){ ?>
+   <?php if($database->variablespermisos('','SUBIRT4','ver')=='si'
+&& $database->plantilla_filtro($nombreTabla,"SUBIR_COTIZACION_FIRMADA",$altaeventos,$DEPARTAMENTO)=="si"){ ?>
         <td></td>
     <?php } ?>
 
     <!-- LOGO_CLIENTE -->
-    <?php if($database->plantilla_filtro($nombreTabla,"LOGO_CLIENTE",$altaeventos,$DEPARTAMENTO)=="si"){ ?>
+     <?php if($database->variablespermisos('','SUBIRT5','ver')=='si'
+&& $database->plantilla_filtro($nombreTabla,"LOGO_CLIENTE",$altaeventos,$DEPARTAMENTO)=="si"){ ?>
         <td></td>
     <?php } ?>
 
-    <!-- IMAGEN_EVENTO -->
-    <?php if($database->plantilla_filtro($nombreTabla,"IMAGEN_EVENTO",$altaeventos,$DEPARTAMENTO)=="si"){ ?>
-        <td></td>
+   <?php if($database->variablespermisos('','SUBIRT16','ver')=='si'
+&& $database->plantilla_filtro($nombreTabla,"IMAGEN_EVENTO",$altaeventos,$DEPARTAMENTO)=="si"){ ?>
     <?php } ?>
-
+<td></td>
     <!-- FALTA_POR_COBRAR (TOTAL) -->
-    <?php if($database->plantilla_filtro($nombreTabla,"FALTA_POR_COBRAR",$altaeventos,$DEPARTAMENTO)=="si"){ ?>
+   <?php if($database->variablespermisos('','SUBIRT7','ver')=='si'
+&& $database->plantilla_filtro($nombreTabla,"FALTA_POR_COBRAR",$altaeventos,$DEPARTAMENTO)=="si"){ ?>
         <td style="text-align:center">
             <strong style="font-size:16px">
                 $<?php echo number_format($faltaporcobrartotal,2,'.',','); ?>
@@ -1399,7 +1478,8 @@ echo $perdidaFiscal;
     <?php } ?>
 
     <!-- FALTA_POR_FACTURAR (TOTAL) -->
-    <?php if($database->plantilla_filtro($nombreTabla,"FALTA_POR_FACTURAR",$altaeventos,$DEPARTAMENTO)=="si"){ ?>
+    <?php if($database->variablespermisos('','SUBIRT8','ver')=='si'
+&& $database->plantilla_filtro($nombreTabla,"FALTA_POR_FACTURAR",$altaeventos,$DEPARTAMENTO)=="si"){ ?>
         <td style="text-align:center">
             <strong style="font-size:16px">
                 $<?php echo number_format($faltaporfacturartotal,2,'.',','); ?>
@@ -1408,14 +1488,19 @@ echo $perdidaFiscal;
     <?php } ?>
 
     <!-- PERDIDA_FISCAL (TOTAL) -->
-    <?php if($database->plantilla_filtro($nombreTabla,"PERDIDA_FISCAL",$altaeventos,$DEPARTAMENTO)=="si"){ ?>
+   <?php if($database->variablespermisos('','SUBIRT9','ver')=='si'
+&& $database->plantilla_filtro($nombreTabla,"PERDIDA_FISCAL",$altaeventos,$DEPARTAMENTO)=="si"){ ?>
         <td style="text-align:center">
             <strong style="font-size:16px">
                 $<?php echo number_format($perdidafiscaltotal,2,'.',','); ?>
             </strong>
         </td>
     <?php } ?>		
-    <?php } ?>		
+    <?php } ?>
+        <td></td>
+        <td></td>
+	
+	
  
 		</tbody>
 		</table>
